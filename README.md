@@ -50,22 +50,6 @@ Variable util a `frontend/.env`:
 
 - `PUBLIC_API_BASE_URL=http://127.0.0.1:8000/api`
 
-## GitHub
-
-Ja he deixat el projecte preparat per no pujar:
-
-- `backend/.env` i `frontend/.env`
-- dependencias locals
-- base de dades SQLite local
-- certificats locals de `frontend/certs`
-- `frontend/public/biblio-dev.cer`
-- logs locals i caches
-
-Important:
-
-- `frontend` te ara mateix un repositori Git propi dins de `frontend/.git`
-- si vols un sol repositori per tot el projecte, elimina aquest `frontend/.git` abans de fer `git init` a `d:\biblio`
-- si no ho fas, Git et detectara `frontend` com un repo incrustat
 
 ## Endpoints principals
 
