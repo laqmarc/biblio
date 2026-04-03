@@ -69,15 +69,55 @@ cmd /c npm run build
 php artisan optimize
 ```
 
-## Endpoints principals
+## Endpoints API
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `GET /api/auth/me`
-- `POST /api/auth/logout`
-- `GET /api/books`
+### Publics
+
 - `GET /api/books/lookup?barcode=9788499890944`
+  Busca metadades d un llibre a partir de l ISBN o codi de barres.
+- `POST /api/auth/register`
+  Crea un usuari nou i retorna token d API.
+- `POST /api/auth/login`
+  Inicia sessio i retorna token d API.
+
+### Protegits
+
+Requereixen header:
+
+```http
+Authorization: Bearer <token>
+```
+
+- `GET /api/auth/me`
+  Retorna l usuari autenticat.
+- `POST /api/auth/logout`
+  Invalida el token actual.
+- `GET /api/books`
+  Retorna la biblioteca de l usuari autenticat.
+  Query params disponibles:
+  `search`, `status`, `location`, `publisher`, `year`, `sort`, `direction`, `page`, `per_page`
 - `POST /api/books`
+  Crea un llibre nou o fa `upsert` per ISBN dins la biblioteca de l usuari.
+- `PATCH /api/books/{book}`
+  Actualitza un llibre existent de l usuari.
+- `DELETE /api/books/{book}`
+  Elimina un llibre existent de l usuari.
+
+### Camps principals de llibre
+
+- `barcode`
+- `isbn10`
+- `isbn13`
+- `title`
+- `author`
+- `publisher`
+- `description`
+- `cover_url`
+- `published_at`
+- `status`
+- `location`
+- `notes`
+- `source`
 
 ## Verificacio
 
