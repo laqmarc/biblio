@@ -3,13 +3,6 @@ Thumbs.db
 
 .vscode/
 
-frontend/node_modules/
-frontend/dist/
-frontend/.astro/
-frontend/*.log
-frontend/server*.log
-frontend/.env
-
 backend/.env
 backend/vendor/
 backend/node_modules/

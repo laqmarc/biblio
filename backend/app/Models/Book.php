@@ -24,10 +24,18 @@ class Book extends Model
         'description',
         'cover_url',
         'published_at',
+        'published_year',
         'status',
         'location',
         'notes',
         'source',
+    ];
+
+    /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'published_year' => 'integer',
     ];
 
     /**

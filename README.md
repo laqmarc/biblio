@@ -1,18 +1,22 @@
 # Biblio Casa
 
-Aplicatiu web per catalogar els llibres de casa amb:
-
-- `backend/`: API REST en Laravel
-- `frontend/`: interficie mobil en Astro
+Aplicatiu web per catalogar llibres de casa amb una sola aplicacio Laravel.
 
 ## Que fa
 
-- Foto del codi de barres des del mobil
-- Normalitzacio d ISBN-10 i ISBN-13
-- Consulta a Open Library i Google Books
 - Login i registre d usuaris
 - Biblioteca separada per usuari
-- Titol, autor, editorial, descripcio i portada
+- Escaneig d ISBN des de foto o entrada manual
+- Consulta a Open Library i Google Books
+- Edicio manual de fitxa
+- Cerca global, filtres, ordenacio i paginacio a la biblioteca
+- Cerca per titol, autor, editorial, ubicacio, any, notes i ISBN
+
+## Estructura actual
+
+- `backend/`: aplicacio Laravel amb API, vista Blade i assets Vite
+
+El directori `frontend/` ja no forma part de l aplicacio activa.
 
 ## Arrencada local
 
@@ -21,35 +25,49 @@ Aplicatiu web per catalogar els llibres de casa amb:
 ```bash
 cd backend
 copy .env.example .env
+composer install
 php artisan key:generate
 php artisan migrate
-php artisan serve
 ```
-
-L API queda a `http://127.0.0.1:8000/api`.
 
 Variables utils a `backend/.env`:
 
+- `APP_URL=http://127.0.0.1:8000`
 - `GOOGLE_BOOKS_API_KEY=` opcional
-- `CORS_ALLOWED_ORIGINS=http://localhost:4321,http://127.0.0.1:4321`
+- `CORS_ALLOWED_ORIGINS=http://127.0.0.1:8000`
 
-### 2. Frontend Astro
+### 2. Assets frontend del backend
 
 ```bash
-cd frontend
-copy .env.example .env
+cd backend
 cmd /c npm install
+```
+
+Per desenvolupament amb recarrega:
+
+```bash
+cd backend
+php artisan serve
+```
+
+En un segon terminal:
+
+```bash
+cd backend
 cmd /c npm run dev
 ```
 
-Per defecte, el frontend apunta a `http://127.0.0.1:8000/api`.
+La URL local es:
 
-Si existeix `frontend/certs/biblio-dev.pfx`, Astro arrenca en HTTPS automaticament.
+- `http://127.0.0.1:8000`
 
-Variable util a `frontend/.env`:
+## Build de produccio
 
-- `PUBLIC_API_BASE_URL=http://127.0.0.1:8000/api`
-
+```bash
+cd backend
+cmd /c npm run build
+php artisan optimize
+```
 
 ## Endpoints principals
 
@@ -63,6 +81,9 @@ Variable util a `frontend/.env`:
 
 ## Verificacio
 
-- `php artisan migrate --force`
-- `php artisan test`
-- `cmd /c npm run build`
+```bash
+cd backend
+php artisan migrate --force
+php artisan test
+cmd /c npm run build
+```

@@ -6,6 +6,10 @@
         "build": "vite build",
         "dev": "vite"
     },
+    "dependencies": {
+        "@zxing/browser": "^0.1.5",
+        "@zxing/library": "^0.21.3"
+    },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
         "axios": "^1.11.0",
